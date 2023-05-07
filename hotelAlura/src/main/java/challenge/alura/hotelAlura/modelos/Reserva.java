@@ -2,6 +2,8 @@ package challenge.alura.hotelAlura.modelos;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import challenge.alura.hotelAlura.service.DatosRegistroReseva;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -26,17 +28,19 @@ public class Reserva {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate fecha_ingreso;
-	private LocalDate fecha_salida;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate entrada;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate salida;
 	Integer valor;
 	@Enumerated(EnumType.STRING)
-	FormaDePago formaPago;
+	FormaDePago forma_pago;
 	
 	public Reserva(DatosRegistroReseva datosRegistroReserva) {
-		this.fecha_ingreso = datosRegistroReserva.fecha_ingreso();
-		this.fecha_salida = datosRegistroReserva.fecha_salida();
+		this.entrada = datosRegistroReserva.entrada();
+		this.salida = datosRegistroReserva.salida();
 		this.valor = datosRegistroReserva.valor();
-		this.formaPago = datosRegistroReserva.formaPago();
+		this.forma_pago = datosRegistroReserva.forma_pago();
 	}
 
 	public Reserva(Reserva numero_reserva) {

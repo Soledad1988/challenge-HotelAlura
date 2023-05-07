@@ -22,12 +22,12 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of ="id")
+@EqualsAndHashCode(of ="codigo")
 public class Reserva {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long codigo;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate entrada;
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -44,6 +44,6 @@ public class Reserva {
 	}
 
 	public Reserva(Reserva numero_reserva) {
-		this.id = numero_reserva.id;
+		this.codigo = numero_reserva.codigo;
 	}
 }

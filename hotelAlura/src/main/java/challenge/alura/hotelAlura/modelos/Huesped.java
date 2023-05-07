@@ -1,14 +1,18 @@
 package challenge.alura.hotelAlura.modelos;
 
+import java.time.LocalTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import challenge.alura.hotelAlura.service.DatosRegistroHuesped;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,20 +31,23 @@ public class Huesped {
 	private Long id;
 	private String nombre;
 	private String apellido;
-	private String fecha_Nacimiento;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalTime fecha_nacimiento;
 	private String nacionalidad;
 	private String telefono;
-	@ManyToOne
-	//@Embedded
-	private Reserva numero_reserva;
+	
+	//@JsonIgnore //prueba
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "codigo") //prueba
+	private Reserva reserva;
 
 	public Huesped(DatosRegistroHuesped datosRegistroHuesped) {
 		this.nombre = datosRegistroHuesped.nombre();
 		this.apellido = datosRegistroHuesped.apellido();
-		this.fecha_Nacimiento = datosRegistroHuesped.fecha_Nacimiento();
+		this.fecha_nacimiento = datosRegistroHuesped.fecha_nacimiento();
 		this.nacionalidad = datosRegistroHuesped.nacionalidad();
 		this.telefono = datosRegistroHuesped.telefono();
-		this.numero_reserva = new Reserva(datosRegistroHuesped.numero_reserva());
+		this.reserva = new Reserva(datosRegistroHuesped.reserva());
 		
 	}
 }

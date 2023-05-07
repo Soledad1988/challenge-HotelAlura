@@ -38,4 +38,8 @@ public class Reserva {
 		this.valor = datosRegistroReserva.valor();
 		this.formaPago = datosRegistroReserva.formaPago();
 	}
+
+	public Reserva(Reserva numero_reserva) {
+		this.id = numero_reserva.id;
+	}
 }

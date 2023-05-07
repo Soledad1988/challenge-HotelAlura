@@ -1,10 +1,12 @@
 package challenge.alura.hotelAlura.modelos;
 
 import challenge.alura.hotelAlura.service.DatosRegistroHuesped;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -28,7 +30,9 @@ public class Huesped {
 	private String fecha_Nacimiento;
 	private String nacionalidad;
 	private String telefono;
-	//private Reserva reserva;
+	@ManyToOne
+	//@Embedded
+	private Reserva numero_reserva;
 
 	public Huesped(DatosRegistroHuesped datosRegistroHuesped) {
 		this.nombre = datosRegistroHuesped.nombre();
@@ -36,7 +40,7 @@ public class Huesped {
 		this.fecha_Nacimiento = datosRegistroHuesped.fecha_Nacimiento();
 		this.nacionalidad = datosRegistroHuesped.nacionalidad();
 		this.telefono = datosRegistroHuesped.telefono();
-		//this.reserva = datosRegistroHuesped.reserva();
+		this.numero_reserva = new Reserva(datosRegistroHuesped.numero_reserva());
 		
 	}
 }

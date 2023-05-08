@@ -14,7 +14,7 @@ public record DatosRegistroHuesped(
 		@NotBlank
 		String apellido,
 		//@NotBlank
-		@JsonFormat(pattern = "dd/MM/yyyy")
+		@JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
 		LocalTime fecha_nacimiento,
 		@NotBlank
 		String nacionalidad,

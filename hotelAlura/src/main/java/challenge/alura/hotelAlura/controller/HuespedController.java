@@ -52,4 +52,5 @@ public class HuespedController {
 			Huesped empleado = huespedRepository.getReferenceById(id);
 			huespedRepository.delete(empleado);
 	}
+
 }

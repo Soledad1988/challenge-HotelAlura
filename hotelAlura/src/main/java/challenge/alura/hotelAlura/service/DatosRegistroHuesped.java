@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import challenge.alura.hotelAlura.modelos.Reserva;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 public record DatosRegistroHuesped(
 		@NotBlank
@@ -21,5 +20,9 @@ public record DatosRegistroHuesped(
 		@NotBlank
 		String telefono,
 		Reserva reserva) {
+	
+
+
+
 
 }
